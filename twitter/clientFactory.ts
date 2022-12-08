@@ -5,6 +5,7 @@ import HNganhang from "./clients/HNganhang"
 import HungDung2292002 from "./clients/hungdung2292002"
 import HoangHon0710 from "./clients/HoangHon0710"
 import NDungcn from "./clients/NDungcn"
+import Dinh2203 from "./clients/Dinh2203"
 
 export default class ClientFactory {
   static getClient(type: string) {
@@ -19,8 +20,10 @@ export default class ClientFactory {
         return new NDungcn();
       case clientType.HUNGDUNG2292002:
         return new HungDung2292002()
-      //case clientType.HOANGHON0710:
-      //return new HoangHon0710()
+      case clientType.HOANGHON0710:
+        return new HoangHon0710()
+      case clientType.DINH2203:
+        return new Dinh2203();
       default:
         break;
     }

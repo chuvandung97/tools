@@ -18,6 +18,7 @@ async function runGiveaway() {
         });
         const userNeedFollowIds = tweetInfo.includes?.users?.map((x) => x.id);
         for (const key in clientType) {
+          console.log(`Processing account ${key}`)
           //Init connection
           const client = ClientFactory.getClient(clientType[key as keyof typeof clientType]);
           if (client == undefined) continue;
@@ -28,15 +29,17 @@ async function runGiveaway() {
           const userId = await BaseClient.getUserId(connection);
           //Follow user
           userNeedFollowIds?.forEach(targetUserId => connection.v2.follow(userId, targetUserId))
+          await sleep(1000 * 15);
           //Reply tweet
           connection.v2.reply(client.replyContent(), tweetId);
-          await sleep(1000);
+          await sleep(1000 * 25);
           //Retweet
           connection.v2.retweet(userId, tweetId);
-          await sleep(1000);
+          await sleep(1000 * 40);
           //Like
           connection.v2.like(userId, tweetId);
-          await sleep(1000 * 60 * 5);
+          await sleep(1000 * 60 * 2);
+          console.log(`Done account ${key}`)
         }
         // var linesExceptFirst = pendingGiveaways.slice(1).join('\n');
         // fs.writeFileSync("./pending-giveaway.txt", linesExceptFirst)
