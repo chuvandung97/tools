@@ -3,6 +3,7 @@ import ClientFactory from "./clientFactory";
 import { clientType } from "./constants/clientType";
 import BaseClient from "./clients/baseClient"
 import { sleep } from "./utils/sleep";
+import { random } from "./utils/random"
 
 async function runGiveaway() {
   try {
@@ -29,16 +30,16 @@ async function runGiveaway() {
           const userId = await BaseClient.getUserId(connection);
           //Follow user
           userNeedFollowIds?.forEach(targetUserId => connection.v2.follow(userId, targetUserId))
-          await sleep(1000 * 15);
+          await sleep(1000 * random(10, 20));
           //Reply tweet
           connection.v2.reply(client.replyContent(), tweetId);
-          await sleep(1000 * 25);
+          await sleep(1000 * random(20, 30));
           //Retweet
           connection.v2.retweet(userId, tweetId);
-          await sleep(1000 * 40);
+          await sleep(1000 * random(35, 45));
           //Like
           connection.v2.like(userId, tweetId);
-          await sleep(1000 * 60 * 2);
+          await sleep(1000 * 45 * random(1, 5));
           console.log(`Done account ${key}`)
         }
         // var linesExceptFirst = pendingGiveaways.slice(1).join('\n');
