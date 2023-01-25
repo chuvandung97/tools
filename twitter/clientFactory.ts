@@ -6,9 +6,10 @@ import HungDung2292002 from "./clients/hungdung2292002"
 import HoangHon0710 from "./clients/HoangHon0710"
 import NDungcn from "./clients/NDungcn"
 import Dinh2203 from "./clients/Dinh2203"
+import IBaseClient from "./clients/IBaseClient"
 
 export default class ClientFactory {
-  static getClient(type: string) {
+  static getClient(type: string): IBaseClient {
     switch (type) {
       case clientType.TALAVODICH:
         return new TalaVodich()
@@ -25,7 +26,7 @@ export default class ClientFactory {
       case clientType.DINH2203:
         return new Dinh2203();
       default:
-        break;
+        return new TalaVodich();
     }
   }
 }

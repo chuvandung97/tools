@@ -1,7 +1,8 @@
 import IBaseClient from "./IBaseClient";
 import { TwitterApi } from "twitter-api-v2";
 import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
-dotenv.config();
+import path from "path";
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 export default class HNganhang implements IBaseClient {
   initConnection(): TwitterApi {
@@ -13,7 +14,10 @@ export default class HNganhang implements IBaseClient {
     };
     return new TwitterApi(initConnection);
   }
+  getBearerToken(): string | undefined {
+    return process.env.ACCOUNT_1_BEARER_TOKEN;
+  }
   replyContent(): string {
-    return "@NDungcn @danghoang97 @Dinh2203";
+    return "@NDungcn @hungdung2292002 @Dinh2203";
   }
 }
