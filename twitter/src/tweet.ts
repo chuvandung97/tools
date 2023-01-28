@@ -8,7 +8,7 @@ import { random } from "../utils/random"
 async function runGiveaway() {
   try {
     const baseClient = ClientFactory.getClient(clientType.TALAVODICH)?.initConnection()
-    const pendingGiveaways = fs.readFileSync("../pending-giveaway.txt", "utf8").toString().split("\n");
+    const pendingGiveaways = fs.readFileSync("./pending-giveaway.txt", "utf8").toString().split("\n");
     for (const giveawayUrl of pendingGiveaways) {
       try {
         const tweetId = giveawayUrl.split("/").slice(-1)[0];

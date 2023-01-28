@@ -9,8 +9,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tweet": "ts-node twitter\\src\\tweet.ts",
-    "check-following": "ts-node twitter\\src\\check-following.ts"
+    "tweet": "ts-node src\\tweet.ts",
+    "check-following": "ts-node src\\check-following.ts"
   },
   "repository": {
     "type": "git",
